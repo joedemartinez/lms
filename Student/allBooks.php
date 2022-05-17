@@ -40,13 +40,14 @@
                   </thead>
                   <tbody>
                     <?php
-                    $sql="SELECT * FROM lms_DB.book ORDER BY BookId DESC";
+                    $sql="SELECT * FROM lms_DB.book order by Availability DESC";
 
                     $result=$conn->query($sql);
                     $i = 1;   
                     //$result=$conn->query($sql);
                     while($row=$result->fetch_assoc())
                     {
+                        $bookid=$row['BookId'];
                         $name=$row['Title'];
                         $avail=$row['Availability'];
                     ?>
@@ -56,17 +57,23 @@
                     <td><?= $row['Author'];?></td>
                     <td><?= $row['Publisher'];?></td>
                     <td><?= $row['Year'];?></td>
-                    <td><b><?php echo $avail ?></b></td>
+                    <td><b><?php if($avail > 0)
+                          echo "<font color=\"green\">AVAILABLE</font>";
+                        else
+                          echo "<font color=\"red\">NOT AVAILABLE</font>";
+
+                             ?></b></td>
                       <td><center>
-                          <a href="editBook.php?id=<?php echo $row['BookId']; ?>" class="btn btn-success">Edit</a>
-                          <a href="updateBook.php?id=<?php echo $row['BookId']; ?>&status=del" class="btn btn-danger">Delete</a>
+                      <?php
+                      if($avail > 0)
+                        echo "<a href=\"issue_request.php?id=".$bookid."\" class=\"btn btn-success\">Issue</a>";
+                      ?>
                       </center></td>
                   </tr>
                    <?php } ?>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Book #</th>
                       <th>Book #</th>
                       <th>Book name</th>
                       <th>Author</th>

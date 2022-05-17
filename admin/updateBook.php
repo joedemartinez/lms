@@ -20,3 +20,17 @@ $sql1="update lms_DB.book set Title='$title', Author='$author', Publisher='$publ
   }
 
 }
+
+if (isset($_GET['status']) && isset($_GET['id'])) {
+  // code...
+  $id = $_GET['id'];
+
+  $sql1="DELETE FROM lms_DB.book WHERE BookId = $id";
+
+  if($conn->query($sql1) === TRUE){
+    $_SESSION['message'] = 'success';
+    header( "Refresh:0.1; url=allBooks.php", true, 303);
+  }else {
+    $_SESSION['message'] = 'error';
+  }
+}

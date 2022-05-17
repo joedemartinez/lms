@@ -15,15 +15,12 @@
       <!-- profile -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown"  role="button">
-          <img src="../assets/images/user1-128x128.jpg" class="img-circle elevation-2" alt="User Image" style="width: 30px;">
-
-          Alex Gardener
+          <img src="../assets/images/avatar.png" class="img-circle elevation-2" alt="User Image" style="width: 30px;">
+          <?= $_SESSION['Name']?>
         </a>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-          <!-- <span class="dropdown-item dropdown-header"></span> -->
-          <div class="dropdown-divider"></div>
-          <a role="button" data-toggle="modal" data-target="#chgPassword" class="dropdown-item">
-            <i class="fas fa-lock nav-icon"></i> Change Password
+          <a role="button" href="#" class="dropdown-item">
+            <i class="fas fa-user nav-icon"></i> Profile
           </a>
           <div class="dropdown-divider"></div>
           <a href="../includes/logout.php" class="dropdown-item">

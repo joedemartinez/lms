@@ -25,7 +25,7 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-book"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Books</span>
+                <span class="info-box-text">Books in Library</span>
                 <span class="info-box-number">
                   <?php
                     $sql = "SELECT * FROM lms_DB.book";

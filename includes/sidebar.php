@@ -20,6 +20,11 @@
                 <!-- set page title -->
               </a>
             </li>
+            <?php if (isset($_SESSION['Type'])){
+              // code...
+              if ($_SESSION['Type'] === 'Admin'){
+                // code...
+            ?>
             <li class="nav-header">STUDENTS</li>
             <li class="nav-item">
               <a href="manageStudents.php" class="nav-link">
@@ -79,7 +84,52 @@
                 <i class="nav-icon fas fa-file"></i>
                 <p>Return Request</p>
               </a>
-            </li>            
+            </li>   
+            <?php 
+              }
+            }
+            ?>
+            <?php if (isset($_SESSION['Type'])){
+              // code...
+              if ($_SESSION['Type'] === 'Student'){
+                // code...
+            ?>
+            <li class="nav-header">BOOKS</li>
+            <li class="nav-item">
+              <a href="allBooks.php" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  All Books
+                </p>
+                <!-- set page title -->
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="borrowedBooks.php" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Borrowed Books
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Recommend Books
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="fas fa-book-open nav-icon"></i>
+                <p>Issued Books</p>
+              </a>
+            </li>  
+            <?php 
+              }
+            }
+            ?>        
             <li class="nav-header"></li>
             <li class="nav-item">
               <a href="../includes/logout.php" class="nav-link">

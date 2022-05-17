@@ -3,7 +3,13 @@ require('dbconn.php');
 
 if (isset($_SESSION['RollNo'])) {
 	# code...
-	header('location:admin/index.php');
+	if ($_SESSION['RollNo'] === 'admin') {
+		// code...
+		header('location:admin/dashboard.php');
+	}else{
+		header('location:student/dashboard.php');
+	}
+	
 }
 ?>
 
@@ -88,17 +94,21 @@ if (isset($_SESSION['RollNo'])) {
 		//data in db
 		$x=$row['Password'];
 		$y=$row['Type'];
+		$i = $row['Name'];
+
 
 		//authenticate credentials
 		if(password_verify($p, $x)){
 			//echo "Login Successful";
 	   		$_SESSION['RollNo']=$u;
+	   		$_SESSION['Name']=$i;
+	   		$_SESSION['Type']=$y;
 	   		$_SESSION['pageTitle'] = 'LMS';
 
 	   		if($y=='Admin')
 	   			header('location:admin/dashboard.php');
 	  		else
-	  			header('location:student/index.php');
+	  			header('location:student/dashboard.php');
 		}else { 
 			echo  "<script type='text/javascript'>Swal.fire('Invalid Credentials!!! Try Again')</script>";
 		}

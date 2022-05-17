@@ -23,57 +23,49 @@
             <div class="card">
               <!-- /.card-header -->
               <div class="card-header">
-                <h3>All Books</h3>
+                <h3>Books Borrowed</h3>
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Book #</th>
+                      <th>#</th>
                       <th>Book name</th>
-                      <th>Author</th>
-                      <th>Publisher</th>
-                      <th>Year</th>
-                      <th>Availability</th>
-                      <th></th>
+                      <th>Issue Date</th>
+                      <th>Return Date</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $sql="SELECT * FROM lms_DB.book ORDER BY BookId DESC";
+                    $rollno = $_SESSION['RollNo'];
+                    $sql="select * from lms_DB.record,lms_DB.book where RollNo = '$rollno' and Date_of_Issue is NOT NULL and Date_of_Return is NOT NULL and book.Bookid = record.BookId";
 
                     $result=$conn->query($sql);
-                    $i = 1;   
-                    //$result=$conn->query($sql);
+                    $rowcount=mysqli_num_rows($result);
+
+                    $i = 1;
                     while($row=$result->fetch_assoc())
                     {
-                        $name=$row['Title'];
-                        $avail=$row['Availability'];
+                      $bookid=$row['BookId'];
+                      $name=$row['Title'];
+                      $issuedate=$row['Date_of_Issue'];
+                      $returndate=$row['Date_of_Return']; 
+
                     ?>
-                  <tr>
-                    <td><?=$i;$i++;?></td>
-                    <td><?php echo $name ?></td>
-                    <td><?= $row['Author'];?></td>
-                    <td><?= $row['Publisher'];?></td>
-                    <td><?= $row['Year'];?></td>
-                    <td><b><?php echo $avail ?></b></td>
-                      <td><center>
-                          <a href="editBook.php?id=<?php echo $row['BookId']; ?>" class="btn btn-success">Edit</a>
-                          <a href="updateBook.php?id=<?php echo $row['BookId']; ?>&status=del" class="btn btn-danger">Delete</a>
-                      </center></td>
-                  </tr>
+                    <tr>
+                      <td><?=$i;$i++;?></td>
+                      <td><?php echo $name ?></td>
+                      <td><?php echo $issuedate ?></td>
+                      <td><?php echo $returndate ?></td>
+                    </tr>
                    <?php } ?>
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>Book #</th>
-                      <th>Book #</th>
+                      <th>#</th>
                       <th>Book name</th>
-                      <th>Author</th>
-                      <th>Publisher</th>
-                      <th>Year</th>
-                      <th>Availability</th>
-                      <th></th>
+                      <th>Issue Date</th>
+                      <th>Return Date</th>
                   </tr>
                   </tfoot>
                 </table>

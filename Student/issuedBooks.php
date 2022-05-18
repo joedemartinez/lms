@@ -4,9 +4,7 @@
   if (isset($_SESSION['Type']) && $_SESSION['Type'] === 'Admin') {
     // code...
     header('location:../admin/dashboard.php');
-  }
-
-  ?>
+  }?>
   <!-- header -->
 
   <!-- Navbar -->
@@ -28,66 +26,59 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <!-- /.card-header -->
               <div class="card-header">
-                <h3>All Books</h3>
+                <h3>Issued Books</h3>
               </div>
+              <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Book #</th>
+                      <th>#</th>
                       <th>Book name</th>
-                      <th>Author</th>
-                      <th>Publisher</th>
-                      <th>Year</th>
-                      <th>Availability</th>
-                      <th></th>
+                      <th>Issue Date</th>
+                      <th>Due date</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    $sql="SELECT * FROM lms_DB.book order by Availability DESC";
+                    <?php  
+                    $rollno = $_SESSION['RollNo'];
+                    $i = 1;
+                    $sql="select * from lms_DB.record,lms_DB.book where RollNo = '$rollno' and Date_of_Issue is NOT NULL and Date_of_Return is NULL and book.Bookid = record.BookId";
 
                     $result=$conn->query($sql);
-                    $i = 1;   
-                    //$result=$conn->query($sql);
+                    $rowcount=mysqli_num_rows($result);
                     while($row=$result->fetch_assoc())
                     {
-                        $bookid=$row['BookId'];
-                        $name=$row['Title'];
-                        $avail=$row['Availability'];
+                      $bookid=$row['BookId'];
+                      $name=$row['Title'];
+                      $issuedate=$row['Date_of_Issue'];
+                      $duedate=$row['Due_Date'];
+                      $renewals=$row['Renewals_left'];
+                    
                     ?>
                   <tr>
                     <td><?=$i;$i++;?></td>
                     <td><?php echo $name ?></td>
-                    <td><?= $row['Author'];?></td>
-                    <td><?= $row['Publisher'];?></td>
-                    <td><?= $row['Year'];?></td>
-                    <td><b><?php if($avail > 0)
-                          echo "<font color=\"green\">AVAILABLE</font>";
-                        else
-                          echo "<font color=\"red\">NOT AVAILABLE</font>";
-
-                             ?></b></td>
+                    <td><?php echo $issuedate ?></td>
+                    <td><?php echo $duedate ?></td>
                       <td><center>
-                      <?php
-                      if($avail > 0)
-                        echo "<a href=\"issue_request.php?id=".$bookid."\" class=\"btn btn-success\">Issue</a>";
+                      <?php 
+                       if($renewals)
+                          echo "<a href=\"renew_request.php?id=".$bookid."\" class=\"btn btn-success\">Renew</a>";
                       ?>
+                      <a href="return_request.php?id=<?php echo $bookid; ?>" class="btn btn-primary">Return</a>
                       </center></td>
                   </tr>
                    <?php } ?>
                   </tbody>
                   <tfoot>
                   <tr>
-                      <th>Book #</th>
-                      <th>Book name</th>
-                      <th>Author</th>
-                      <th>Publisher</th>
-                      <th>Year</th>
-                      <th>Availability</th>
-                      <th></th>
+                    <th>#</th>
+                    <th>Book name</th>
+                    <th>Issue Date</th>
+                    <th>Due date</th>
+                    <th></th>
                   </tr>
                   </tfoot>
                 </table>
@@ -113,5 +104,6 @@
 
 <!-- scripts -->
 <?php include "../includes/scripts.php" ?>
+<?php include "../includes/message.php" ?>
 </body>
 </html>

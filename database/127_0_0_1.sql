@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2022 at 06:08 PM
+-- Generation Time: May 18, 2022 at 02:22 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -41,8 +41,6 @@ CREATE TABLE `author` (
 INSERT INTO `author` (`BookId`, `Author`) VALUES
 (3, 'Jay Prakash'),
 (4, 'Jay Prakash'),
-(5, 'x'),
-(6, 'a1'),
 (7, 'Bogart'),
 (7, 'Kenneth'),
 (8, 'Auer'),
@@ -61,11 +59,7 @@ INSERT INTO `author` (`BookId`, `Author`) VALUES
 (18, 'Sandhu'),
 (18, 'Singh'),
 (19, 'Gardener'),
-(19, 'James'),
-(20, 'adsa'),
-(20, 'asdas'),
-(43, 'adsa'),
-(44, 'adsa');
+(19, 'James');
 
 -- --------------------------------------------------------
 
@@ -104,13 +98,7 @@ INSERT INTO `book` (`BookId`, `Title`, `Author`, `Publisher`, `Year`, `Availabil
 (15, 'Machine Design', 'Pearson', 'Pearson India ', '2012', 5),
 (16, 'Nuclear Physics', 'Pearson', 'Pearson India ', '1998', 7),
 (17, 'Operating System', 'Pearson', 'Pearson India ', '1990', 6),
-(18, 'Theory of Machines', 'Pearson', 'Pearson', '1992', 12),
-(19, 'Book 1', 'Pearson', 'Publisher 1', '2009', 30),
-(20, 'adsas', 'Pearson', 'asdas1', '2312', 2),
-(43, 'adf', 'Pearson', 'ADFDS', '2312', 2),
-(44, 'adf10', 'Pearson', 'ADFDS', '2312', 2),
-(53, 'dsda', 'sdc', 'sd', '3232', 2),
-(54, '1', '1', '1', '1', 1);
+(18, 'Theory of Machines', 'Pearson', 'Pearson', '1992', 12);
 
 -- --------------------------------------------------------
 
@@ -268,6 +256,7 @@ CREATE TABLE `renew` (
 --
 
 INSERT INTO `renew` (`RollNo`, `BookId`) VALUES
+('admin', 2),
 ('b160001cs', 11),
 ('b160158cs', 2),
 ('b160158cs', 9),
@@ -290,6 +279,7 @@ CREATE TABLE `return` (
 
 INSERT INTO `return` (`RollNo`, `BookId`) VALUES
 ('b160003ch', 9),
+('b160158cs', 2),
 ('b160158cs', 18),
 ('b160511cs', 10),
 ('b160511cs', 13);
@@ -447,7 +437,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `recommendations`
 --
 ALTER TABLE `recommendations`
-  MODIFY `R_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `R_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -458,12 +448,6 @@ ALTER TABLE `students`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `author`
---
-ALTER TABLE `author`
-  ADD CONSTRAINT `author_ibfk_1` FOREIGN KEY (`BookId`) REFERENCES `book` (`BookId`);
 
 --
 -- Constraints for table `message`

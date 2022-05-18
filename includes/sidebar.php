@@ -113,7 +113,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="recommendBook.php" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
                   Recommend Books
@@ -121,7 +121,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="issuedBooks.php" class="nav-link">
                 <i class="fas fa-book-open nav-icon"></i>
                 <p>Issued Books</p>
               </a>

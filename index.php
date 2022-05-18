@@ -61,7 +61,7 @@ if (isset($_SESSION['RollNo'])) {
 			<div class="clear"></div>
 		</div>
 
-		<div class="register" id="registerPage" style="display: none;">
+		<!-- <div class="register" id="registerPage" style="display: none;">
 			<h2>Sign Up</h2>
 			<form action="index.php" method="post">
 
@@ -76,7 +76,7 @@ if (isset($_SESSION['RollNo'])) {
 			</form>
 			<p>Already Have An Account? <a class="underline signup_in_Toggle" href="#">Sign In Here!</a></p>
 			<div class="clear"></div>
-		</div>
+		</div> -->
 
 		<div class="clear"></div>
 	</div>

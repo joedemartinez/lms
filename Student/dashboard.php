@@ -1,5 +1,10 @@
   <!-- header -->
-  <?php include "../includes/header.php" ?>
+  <?php include "../includes/header.php";
+
+  if (isset($_SESSION['Type']) && $_SESSION['Type'] === 'Admin') {
+    // code...
+    header('location:../admin/dashboard.php');
+  }?>
   <!-- header -->
 
   <!-- Navbar -->
